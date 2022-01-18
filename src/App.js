@@ -1,29 +1,21 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css'; 
 import { Cards, Charts, CountryPicker } from './components';
 
-//import { fetchData } from './api';
-const url = 'https://covid19.mathdro.id/api';
+import { fetchData } from './api';
 
 function App() {
 
-  const [apiData, setApiData] = useState(null);
+   const [apiData, setApiData] = useState(null);
   
   useEffect( () => {
 
-    const fetchData = async () => {
-      try {
-          const response = await axios(url);
-          //return response.data;
-          setApiData( response.data )
-      }
-      catch(error){
-  
-      }
+    async function fetchMyAPI() {
+      const data = await fetchData();
+      setApiData(data);
     }
-    
-    fetchData();
+
+    fetchMyAPI();
 
   }, [] );
 
@@ -32,7 +24,7 @@ function App() {
   return (
     <div className="App">
         Covid-19 Tracker
-        <Cards />
+        <Cards data={apiData}/>
         <Charts />
         <CountryPicker />
     </div>
