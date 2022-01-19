@@ -19,10 +19,8 @@ function App() {
 
   }, [] );
 
-  console.log(apiData);
-
   return (
-    <div className="App">
+    <div className="container">
         Covid-19 Tracker
         <Cards data={apiData}/>
         <Charts />
