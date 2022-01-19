@@ -1,8 +1,10 @@
 import { Container, Grid, CardContent, Typography, Card } from "@material-ui/core";
 import CountUp from 'react-countup';
-//import cx from 'className';
+import classNames from 'classnames';
 
-//import styles from './Cards.module.css';
+import styles from './Cards.module.css';
+
+let cx = classNames.bind(styles);
 
 const Cards = ( props ) => {
     console.log(props.data);
@@ -12,8 +14,8 @@ const Cards = ( props ) => {
     
     return (
         <Container maxWidth="md">
-            <Grid container spacing={3}>
-                <Grid item component={Card}>
+            <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid item  xs={12} md={4} component={Card} className={cx(styles.card, styles.confirmed)}>
                     <CardContent>
                         <Typography color="textSecondary" gutterBottom>
                            Infected
@@ -25,11 +27,11 @@ const Cards = ( props ) => {
                             
                         </Typography>  
                         <Typography  variant="body2">
-                            
+                            Number of active cased of Covid-19
                         </Typography>    
                     </CardContent>
                 </Grid>
-                <Grid item component={Card}>
+                <Grid item  xs={12} md={4} component={Card} className={cx(styles.card, styles.recovered)}>
                     <CardContent>
                         <Typography color="textSecondary" gutterBottom>
                             Recovered
@@ -41,11 +43,11 @@ const Cards = ( props ) => {
                            
                         </Typography>  
                         <Typography  variant="body2">
-                           
+                            Number of recoveries from Covid-19
                         </Typography>    
                     </CardContent>
                 </Grid>
-                <Grid item component={Card}>
+                <Grid item  xs={12} md={4} component={Card} className={cx(styles.card, styles.deaths)}>
                     <CardContent>
                         <Typography color="textSecondary" gutterBottom>
                            Deaths
@@ -57,7 +59,7 @@ const Cards = ( props ) => {
                            
                         </Typography>  
                         <Typography  variant="body2">
-                            
+                            Number of deaths caused by Covid-19
                         </Typography>    
                     </CardContent>
                 </Grid>
