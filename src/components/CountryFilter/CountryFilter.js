@@ -11,18 +11,17 @@ import styles from './CountryFilter.module.css';
 const CountryFilter = ( { handleCountryChange } ) => {
 
     const [apiCountries, setCountries] = useState([]);
-    const [countryValue, setCountryValue] = useState(null);
+    //const [countryValue, setCountryValue] = useState(null);
 
-    useEffect(() => {
-
+    useEffect( () => {
+        
         async function fetchApiCountries(){
             const data = await fetchCountries();
             //console.log(data);
             setCountries(data);
         }
-        
         fetchApiCountries();
-        
+
     }, [setCountries]);
 
     const countriesData = apiCountries.countries;
@@ -32,17 +31,24 @@ const CountryFilter = ( { handleCountryChange } ) => {
         getOptionLabel: (option) => option.name,
     };
 
-    //console.log(countryValue);
+    const close = document.getElementsByClassName("MuiAutocomplete-clearIndicator")[0];
+        
+    // Add a Click Event Listener to the button
+    if(close){
+        close.addEventListener("click", () => {
+            handleCountryChange('');
+        });
+    }
 
     const countriesAutocomplete = (
         countriesData 
         ? (
             <Autocomplete
                 {...defaultProps}
-                id="controlled-demo"
+                id="tags-outlined"
                 fullWidth={true}
-                size="medium"
-                value={countryValue}
+                autoHighlight
+                //value={countryValue}
                 onChange={(event, newValue) => {
                     handleCountryChange(newValue);
                 }}
