@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 import './App.css'; 
-import { Cards, Charts, CountryPicker } from './components';
+import { Cards, Charts, CountryFilter } from './components';
 
 import { fetchData } from './api';
 
 function App() {
 
-   const [apiData, setApiData] = useState(null);
+  const [apiData, setApiData] = useState(null);
   
   useEffect( () => {
 
@@ -19,12 +19,17 @@ function App() {
 
   }, [] );
 
+  const handleCountryChange = async (countryAttr) => {
+    const countryData = await fetchData(countryAttr.name);
+    setApiData(countryData);
+  }
+
   return (
     <div className="container">
         Covid-19 Tracker
+        <CountryFilter handleCountryChange={handleCountryChange} />
         <Cards data={apiData}/>
         <Charts />
-        <CountryPicker />
     </div>
   );
 }

@@ -12,7 +12,7 @@ const Cards = ( props ) => {
     
     return (
         <Container maxWidth="md">
-            <Grid container spacing={3} justify="center">
+            <Grid container justify="center">
                 <Grid item  xs={12} md={4} component={Card} className={cx(styles.card, styles.confirmed)}>
                     <CardContent>
                         <Typography color="textSecondary" gutterBottom>
