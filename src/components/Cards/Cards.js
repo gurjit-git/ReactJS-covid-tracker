@@ -1,3 +1,4 @@
+import Alert from '@mui/material/Alert';
 import { Container, Grid, CardContent, Typography, Card } from "@material-ui/core";
 import CountUp from 'react-countup';
 import cx from 'classnames';
@@ -12,7 +13,9 @@ const Cards = ( props ) => {
     
     return (
         <Container maxWidth="md">
-            <Grid container justify="center">
+            {props.data == 'error' ? 
+            <Alert variant="outlined" severity="error">No Information available for the Selected Country.</Alert> :
+            <Grid container justifyContent="center">
                 <Grid item  xs={12} md={4} component={Card} className={cx(styles.card, styles.confirmed)}>
                     <CardContent>
                         <Typography color="textSecondary" gutterBottom>
@@ -62,6 +65,7 @@ const Cards = ( props ) => {
                     </CardContent>
                 </Grid>
             </Grid>
+            }
         </Container>
     )
 }

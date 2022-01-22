@@ -11,10 +11,15 @@ export async function fetchData(country) {
 
     try {
         const { data: { confirmed, recovered, deaths, lastUpdate } } = await axios.get(updatedUrl);
+       // console.log(data)
         return { confirmed, recovered, deaths, lastUpdate };
     }
     catch (error) {
-        console.log(error);
+        let e;
+        if(error){
+            e = 'error';
+        }
+        return e;
     }
 }
 

@@ -34,11 +34,11 @@ const CountryFilter = ( { handleCountryChange } ) => {
     const close = document.getElementsByClassName("MuiAutocomplete-clearIndicator")[0];
         
     // Add a Click Event Listener to the button
-    if(close){
-        close.addEventListener("click", () => {
-            handleCountryChange('');
-        });
-    }
+    // if(close){
+    //     close.addEventListener("click", () => {
+    //         handleCountryChange('');
+    //     });
+    // }
 
     const countriesAutocomplete = (
         countriesData 

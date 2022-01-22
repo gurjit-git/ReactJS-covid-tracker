@@ -7,6 +7,7 @@ import { fetchData } from './api';
 function App() {
 
   const [apiData, setApiData] = useState(null);
+  const [selectedCountry, setSelectedCountry] = useState(null);
   
   useEffect( () => {
 
@@ -20,16 +21,24 @@ function App() {
   }, [] );
 
   const handleCountryChange = async (countryAttr) => {
-    const countryData = await fetchData(countryAttr.name);
-    setApiData(countryData);
+    if(countryAttr){
+      const countryData = await fetchData(countryAttr.name);
+      setSelectedCountry(countryAttr.name);
+      setApiData(countryData);
+    }
+    // else{
+    //   const data = await fetchData();
+    //   setSelectedCountry(null);
+    //   setApiData(data);
+    // }
   }
-
+  //console.log(apiData);
   return (
     <div className="container">
         Covid-19 Tracker
         <CountryFilter handleCountryChange={handleCountryChange} />
-        <Cards data={apiData}/>
-        <Charts />
+        <Cards data={apiData} />
+        <Charts data={apiData} country={selectedCountry} />
     </div>
   );
 }
